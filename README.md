@@ -2,8 +2,24 @@
 Setup main tools for pentest enviromment (tested in Kali WSL).
 
 ## Instalation
-[Windows Subsystem for Linux Installation Guide for Windows 10](https://docs.microsoft.com/pt-br/windows/wsl/install-win10)
-[Manually download Windows Subsystem for Linux distro packages](https://docs.microsoft.com/pt-br/windows/wsl/install-manual)
+<table>
+  <tr>
+    <td>Guide</td>
+    <td> Link </td>
+  </tr>
+  <tr>
+    <td> Windows Subsystem for Linux Installation for Windows 10</td>
+    <td> <a href="https://docs.microsoft.com/pt-br/windows/wsl/install-win10"> Microsoft Documentation </a></td>
+  </tr>
+  <tr>
+    <td> Manually download Windows Subsystem for Linux distro packages </td>
+    <td> <a href="https://docs.microsoft.com/pt-br/windows/wsl/install-manual"> Microsoft Documentation </a> </td>
+  </tr>
+  <tr>
+    <td> Removing Windows paths from WSL path </td>
+    <td> <a href="https://gist.github.com/ilbunilcho/4280bd55a10cefef75e74986b6bff936"> GitHub topic </a> </td>
+  </tr>
+</table>
 
 ## Setup
 ### :heavy_exclamation_mark::heavy_exclamation_mark:__Dont necessary clone the project__:heavy_exclamation_mark::heavy_exclamation_mark:
