@@ -15,10 +15,6 @@ Setup main tools for pentest enviromment (tested in Kali WSL).
     <td> Manually download Windows Subsystem for Linux distro packages </td>
     <td> <a href="https://docs.microsoft.com/pt-br/windows/wsl/install-manual"> Microsoft Documentation </a> </td>
   </tr>
-  <tr>
-    <td> Removing Windows paths from WSL path </td>
-    <td> <a href="https://gist.github.com/ilbunilcho/4280bd55a10cefef75e74986b6bff936"> GitHub topic </a> </td>
-  </tr>
 </table>
 
 ## Setup
