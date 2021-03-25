@@ -4,10 +4,6 @@ YELLOW='\033[1;33m'
 NC='\033[0m'
 BLINK = '\e[5mBlink'
 
-
-sudo echo "[interop]" >> /etc/wsl.conf
-sudo echo "appendWindowsPath = false" >> /etc/wsl.conf
-
 if grep -q 'Dpkg::Progress-Fancy "1";' /etc/apt/apt.conf.d/99progressbar; then
     echo 'Dpkg::Progress-Fancy "1";' |
         sudo tee /etc/apt/apt.conf.d/99progressbar
