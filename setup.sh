@@ -41,6 +41,8 @@ apt install python3-pip -y -qq
 
 printf "\n${RED}Install golang${YELLOW}\n"
 apt install golang -y -qq
+GOROOT=$HOME/go
+PATH=$PATH:$GOROOT/bin
 echo '''
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
