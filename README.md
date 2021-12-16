@@ -27,3 +27,24 @@ Just run the command as root.
 ```bash
 curl https://raw.githubusercontent.com/LucaRibeiro/kali-wsl-setup/main/setup.sh | bash
 ```
+
+## To-do
+### Essential
+- Install and configure winget
+- Install scoop
+- Install chocolatey
+### Basics
+- Install Code
+- Install Spotify
+- Install Git
+- Install GH (GitHub CLI)
+- Install Brave Browser, Firefox, Chrome, Opera, Tor
+### WSL
+- Configure and update WSL
+- Install Kali
+- Call bash to configure and customize Kali WSL
+### Customize
+- Customize PowerShell with
+    -  nerd fonts    
+    - oh-my-posh 
+    - posh-git
