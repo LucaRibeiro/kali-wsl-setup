@@ -1,0 +1,62 @@
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "", /** setup **/
+  "copyOnSelect": false,
+  "copyFormatting": false,
+  "profiles": {
+    "defaults": {
+      "startingDirectory": "",  /** setup **/
+      "colorScheme": "Dracula",
+      "useAcrylic": true,
+      "acrylicOpacity": 0.35,
+      "snapOnInput": true,
+      "fontFace": "Hack FT",
+      "closeOnExit": "always",
+      "bellStyle": "none"
+    },
+
+    "list": [] /** setup **/
+  },
+
+
+  "schemes": [], /** setup **/
+
+  "actions": [
+    { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
+    { "command": "paste", "keys": "ctrl+v" },
+    { "commandLine": "wt split-pane", "keys": "ctrl+shift+m" },
+    { "command": "find", "keys": "ctrl+shift+f" },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "vertical",
+        "index": 0
+      },
+      "keys": "alt+w"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "horizontal",
+        "index": 0
+      },
+      "keys": "alt+s"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "vertical",
+        "index": 1
+      },
+      "keys": "alt+q"
+    },
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "horizontal",
+        "index": 1
+      },
+      "keys": "alt+a"
+    }
+  ]
+}

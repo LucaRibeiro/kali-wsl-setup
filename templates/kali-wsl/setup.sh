@@ -1,4 +1,5 @@
 #!/bin/bash
+
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
@@ -14,10 +15,7 @@ if grep -q 'Dpkg::Progress-Fancy::' /etc/apt/apt.conf.d/99progressbar; then
         sudo tee /etc/apt/apt.conf.d/99progressbar
 fi
 
-## Basics
-
-printf "\n${RED}Update and upgrade${YELLOW}\n"
-apt update -qq && apt upgrade -y -qq
+#### Basics ####
 
 printf "\n${RED}Install cURL${YELLOW}\n"
 apt install curl -y -qq
@@ -48,7 +46,21 @@ export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 ''' >> ~/.bashrc
 
-## Tools
+#### ZSH Shell ####
+
+printf "\n${RED}Install zsh${YELLOW}\n"
+sudo apt install zsh -y -qq
+
+printf "\n${RED}Install oh-my-zsh${YELLOW}\n"
+if [[ -f /root/.oh-my-zsh ]]; then
+    rm -rf /root/.oh-my-zsh
+fi
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+printf "\n${RED}Update and upgrade${YELLOW}\n"
+apt update -qq && apt upgrade -y -qq
+
+#### Pentest Tools ####
 
 printf "\n${RED}Install nmap${YELLOW}\n"
 apt install nmap -y -qq
@@ -61,12 +73,3 @@ curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/t
 chmod 755 msfinstall
 ./msfinstall
 rm -f ./msfinstall
-
-printf "\n${RED}Install zsh${YELLOW}\n"
-sudo apt install zsh -y -qq
-
-printf "\n${RED}Install oh-my-zsh${YELLOW}\n"
-if [[ -f /root/.oh-my-zsh ]]; then
-    rm -rf /root/.oh-my-zsh
-fi
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
