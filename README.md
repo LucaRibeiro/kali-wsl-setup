@@ -22,10 +22,10 @@ Setup main tools for pentest enviromment (tested in Kali WSL).
 </table>
 
 ## Setup
-### :heavy_exclamation_mark::heavy_exclamation_mark:__Dont necessary clone the project__:heavy_exclamation_mark::heavy_exclamation_mark:
+### :heavy_exclamation_mark::heavy_exclamation_mark:__Not necessary clone the project__:heavy_exclamation_mark::heavy_exclamation_mark:
 Just run the command as root.
 ```bash
-curl https://raw.githubusercontent.com/LucaRibeiro/kali-wsl-setup/main/setup.sh | bash
+curl https://raw.githubusercontent.com/lucaregne/init-desktop-config/main/setup.sh | bash
 ```
 
 ## To-do
