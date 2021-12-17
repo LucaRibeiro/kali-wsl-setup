@@ -48,3 +48,8 @@ curl https://raw.githubusercontent.com/lucaregne/init-desktop-config/main/setup.
     -  nerd fonts    
     - oh-my-posh 
     - posh-git
+
+## Requirements
+- PowerShell 7.0 or later
+- Script execution `Set-ExecutionPolicy Bypass -Scope Process -Force`
+- Administrator privileges 
