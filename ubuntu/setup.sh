@@ -1,72 +1,76 @@
 #!/bin/bash
 
+#### Colors ####
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
-BLINK = '\e[5mBlink'
+GREEN='\033[0;32m'
+BLINK='\e[5m'
+
+### Update packages ##
+sudo apt update
 
 #### Basics ####
+printf "\n${RED}Install curl${YELLOW}\n"
+sudo apt install curl 
 
-printf "\n${RED}Install basics (curl, wget, nvim, git, python3, pip3, prips, unzip)${YELLOW}\n"
-sudo apt install curl wget nvim git python3-pip python3 prips -y
 
-printf "${RED}${BLINK}Git Name: ${YELLOW}"
+printf "\n${RED}Installing wget ${YELLOW}\n"
+sudo apt install wget -y
+
+
+printf "\n${RED}Installing nvim${YELLOW}\n"
+sudo apt install nvim -y
+
+
+printf "\n${RED}Installing curl${YELLOW}\n"
+sudo apt install curl -y
+
+
+printf "\n${RED}Installing python3${YELLOW}\n"
+sudo apt install python3-pip python3 -y
+
+
+printf "\n${RED}Installing git${YELLOW}\n"
+sudo apt install git -y
+
+
+printf "${GREEN}${BLINK}Git Name: ${NC}"
 read GIT_NAME
 git config --global user.name $GIT_NAME
-printf "\n${RED}${BLINK}Git Mail: ${YELLOW}"
+printf "\n${GREEN}${BLINK}Git Mail: ${NC}"
 read GIT_EMAIL
 git config --global user.email $GIT_EMAIL
 git config --global core.editor nvim
 
 
-#### Pentest Tools ####
-
-printf "\n${RED}Install nmap${YELLOW}\n"
-sudo apt install nmap -y 
-
-#### Golang Tools ####
-
-printf "\n${RED}Install golang${YELLOW}\n"
+printf "\n${RED}Installing golang${YELLOW}\n"
 wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go
 sudo tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 rm go1.18.1.linux-amd64.tar.gz
 
-GOHOME=$HOME/go
-GOROOT=/usr/local/go
-export PATH=$GOROOT/bin:$PATH
-export PATH=$GOHOME/bin:$PATH
 
 echo '''
-export GOHOME=$HOME/go
+export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
-PATH=$PATH
+PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ''' >> $HOME/.bashrc
 
-### Golang tools ###
+source ~/.bashrc
 
-go install github.com/tomnomnom/anew@latest
-go install github.com/OWASP/Amass/v3/...@master
-go install github.com/tomnomnom/assetfinder@latest
-go install github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-go install github.com/Josue87/gotator@latest
-go install github.com/ffuf/ffuf@latest
 
-### Setup tools folder ###
-mkdir $HOME/tools
-mkdir $HOME/tools/bin
-mkdir $HOME/tools/utils
-mkdir $HOME/tools/recon
-mkdir $HOME/tools/scan
-mkdir $HOME/tools/
+printf "\n${RED}Installing Vistual Studio Code${YELLOW}\n"
+sudo snap install code --classic
 
-export PATH=$HOME/tools/bin:$PATH
 
-wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux -o findomain
-chmod +x findomain
-mv $HOME/tools/bin/findomain
+printf "\n${RED}Installing PowerShell${YELLOW}\n"
+sudo snap install powershell --classic
 
-### SecLists ###
-wget -c https://github.com/danielmiessler/SecLists/archive/master.zip -O SecList.zip
-unzip SecList.zip -d $HOME/tools/utils
-rm -f SecList.zip
+
+printf "\n${RED}Installing brave${YELLOW}\n"
+sudo snap install brave
+
+
+printf "\n${RED}Installing android studio${YELLOW}\n"
+sudo snap install android-studio --classic
