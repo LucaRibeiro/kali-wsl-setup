@@ -43,7 +43,6 @@ curl "https://discord.com/api/download?platform=linux&format=deb" -L --output $H
 sudo dpkg -i $HOME/Downloads/discord.deb
 rm $HOME/Downloads/discord.deb
 
-
 ### PowerShell ###
 printf "\n${GREEN}Installing PowerShell${NC}\n"
 sudo snap install powershell --classic

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+### Colors ###
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 ############################
 ########## Basics ##########
 ############################
@@ -18,12 +24,16 @@ git config --global core.editor neovim
 #############################
 ######### Languages #########
 #############################
-printf "\n${GREEN}Installing languages:${NC}\n"
-printf "\n- python (pyenv, pipx and pipenv) ${YELLOW}\n"
-printf "\n- gcc ${YELLOW}\n"
-printf "\n- Golang ${YELLOW}\n"
-printf "\n- ruby ${YELLOW}\n"
-printf "\n- NodeJs (npm, yarn) ${YELLOW}\n"
+printf "${GREEN}"
+printf "\nInstalling languages:"
+printf "\n\t- python (pyenv, pipx and pipenv)"
+printf "\n\t- gcc"
+printf "\n\t- Golang"
+printf "\n\t- ruby"
+printf "\n\t- NodeJs (npm, yarn)"
+printf "\n\t- .Net"
+printf "${NC}"
+
 ### GCC ###
 sudo apt install gcc -y
 ### Python ###
@@ -32,7 +42,6 @@ curl https://pyenv.run | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-source ~/.zshrc
 pip install --user pipx
 pipx install --user pipenv
 ### Ruby ###
@@ -40,10 +49,9 @@ sudo apt install ruby gem
 ### NodeJs ###
 sudo apt install nodejs npm -y
 sudo npm install typescript yarn -g
-### Golang ###
-$endpoint_download=(curl https://go.dev/dl/ | grep '<a class="download downloadBox"' | grep linux-amd64 | cut -d '"' -f4)
-curl https://go.dev/$endpoint_download --output $HOME/Downloads/golang.tar.gz
-sudo rm -rf /usr/local/go
+## Golang ###
+endpoint_download=$(curl https://go.dev/dl/ | grep '<a class="download downloadBox"' | grep linux-amd64 | cut -d '"' -f4)
+curl https://go.dev/$endpoint_download -L --output $HOME/Downloads/golang.tar.gz
 sudo tar -C /usr/local -xzf $HOME/Downloads/golang.tar.gz
 rm $HOME/Downloads/golang.tar.gz
 echo '''
@@ -51,29 +59,22 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ''' >> $HOME/.zshrc
-
+### .Net ###
+sudo snap install dotnet-sdk --classic --channel=6.0
+sudo snap alias dotnet-sdk.dotnet dotnet
 
 ##############################
 ####### Virtualization #######
 ##############################
-printf "\n${GREEN}"
+printf "${GREEN}"
 printf "Installing virtualization tools:"
-printf "\t - Docker"
-printf "\t - Virtual Box"
-printf "\t - Genymotion"
+printf "\n\t - Docker"
+printf "\n\t - Virtual Box"
+printf "\n\t - Genymotion"
 printf "${NC}"
 ### Docker ###
-sudo apt-get install ca-certificates curl gnupg lsb-release
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo groupadd docker
-sudo usermod -aG docker $USER
-sudo systemctl enable docker.service
-sudo systemctl enable containerd.service
+curl -fsSL https://get.docker.com -o $HOME/Downloads/get-docker.sh
+sudo sh $HOME/Downloads/get-docker.sh
 ### Virtual Box ###
 sudo apt install virtualbox -y
 ### Genymotion ###
@@ -88,9 +89,9 @@ sudo $HOME/Downloads/genymotion_install.bin
 ###############################
 printf "\n${GREEN}"
 printf "Installing IDEs and Code Editors:"
-printf "\t - Installing nvim"
-printf "\t - Visual Studio Code"
-printf "\t - Android studio"
+printf "\n\t - Installing nvim"
+printf "\n\t - Visual Studio Code"
+printf "\n\t - Android studio"
 printf "${NC}"
 ### NeoVim ###
 sudo apt install neovim -y
