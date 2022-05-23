@@ -23,18 +23,14 @@ Install-PackagesManagers -Only scoop
 Version History
 v1.0 – Luca Regne – Initial release
 #>
-function Install-PackageManager {
+function Install-PackagesManagers {
     [CmdletBinding()]
-    Param (
-        [Parameter()]
-        [TypeName]
-        $ParameterName
-    )
+    Param ()
     Begin {
         function Install-Scoop {
             try {
                 Get-Command scoop -ErrorAction Stop | Out-Null
-                Write-Prompt "Scoop already is installed"  -ForegroundColor Green
+                Write-Host "Scoop already is installed"  -ForegroundColor Green
                 scoop update
                 try {
                     Get-Command sudo -ErrorAction Stop | Out-Null
@@ -45,18 +41,18 @@ function Install-PackageManager {
                 }
             }
             catch {
-                Write-Prompt "Installing Scoop" -ForegroundColor Green
-                Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh') -ErrorAction SilentlyContinue
+                Write-Host "Installing Scoop" -ForegroundColor Green
+                Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
             }
         }
         
         function Install-Choco {
             try {
                 Get-Command choco -ErrorAction Stop | Out-Null
-                Write-Prompt "Chocolatey already is installed"  -ForegroundColor Green
+                Write-Host "Chocolatey already is installed" -ForegroundColor Green
             }
             catch {
-                Write-Prompt "Installing Chocolatey"  -ForegroundColor Green
+                Write-Host "Installing Chocolatey"  -ForegroundColor Green
                 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')
             }
         }
@@ -64,20 +60,23 @@ function Install-PackageManager {
         function Install-winget {
             try {
                 Get-Command winget -ErrorAction Stop | Out-Null
-                Write-Prompt "Winget already is installed"  -ForegroundColor Green
+                Write-Host "Winget already is installed"  -ForegroundColor Green
             }
             catch {
-                Write-Prompt "Installing Chocolatey"  -ForegroundColor Green
-                Add-AppPackage -ExternalLocation https://github.com/microsoft/winget-cli/releases/latest/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+                Write-Host "Installing WinGet" -ForegroundColor Green
+                $ResponseRest = Invoke-WebRequest https://api.github.com/repos/microsoft/winget-cli/releases/latest
+                $LatestTag = (ConvertFrom-Json ($ResponseRest).Content).tag_name
+                $UrlDownload = "https://github.com/microsoft/winget-cli/releases/download/$LatestTag/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+                Add-AppPackage -ExternalLocation $UrlDownload
             }
         }
         
     }
 
     Process {
+        Install-winget
         Install-Choco
         Install-Scoop
-        Install-winget
     }
 
     End {}
