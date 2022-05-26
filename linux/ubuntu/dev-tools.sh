@@ -60,8 +60,7 @@ export GOROOT=/usr/local/go
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 ''' >> $HOME/.zshrc
 ### .Net ###
-sudo snap install dotnet-sdk --classic --channel=6.0
-sudo snap alias dotnet-sdk.dotnet dotnet
+curl https://dot.net/v1/dotnet-install.sh |  bash
 
 ##############################
 ####### Virtualization #######
