@@ -29,20 +29,6 @@ curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -
 sudo dpkg -i $HOME/Downloads/google-chrome-stable_current_amd64.deb
 rm $HOME/Downloads/google-chrome-stable_current_amd64.deb
 
-## Brave Browser ##
-printf "\n${RED}Installing brave${YELLOW}\n"
-sudo snap install brave
-
-## Spotify ##
-pritn "\n${RED}Installing Spotify${YELLOW}\n"
-sudo snap install spotify
-
-## Discord ##
-printf "\n${RED}Installing discord${YELLOW}\n"
-curl "https://discord.com/api/download?platform=linux&format=deb" -L --output $HOME/Downloads/discord.deb
-sudo dpkg -i $HOME/Downloads/discord.deb
-rm $HOME/Downloads/discord.deb
-
 ### PowerShell ###
 printf "\n${GREEN}Installing PowerShell${NC}\n"
 sudo snap install powershell --classic

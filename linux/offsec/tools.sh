@@ -98,18 +98,19 @@ printf "\n\t- Frida Tools"
 printf "\n\t- Apktool"
 printf "\n\t- Bytecode Viewer"
 printf "\n\t- scrcpy"
+printf "\n\t- apksigner"
+printf "\n\t- pidcat"
 printf "${NC}\n"
 
 # frida #
-pip3 install frida-tools
-# apktool #
+pipx install frida-tools
 
-# ByteCode Viewer #
-latest_bv=$(curl https://github.com/Konloch/bytecode-viewer/releases/latest -si | grep 'location:' | rev | cut -d '/' -f 1 | rev | sed 's/v//')
-curl https://github.com/Konloch/bytecode-viewer/releases/download/v$latest_bv/Bytecode-Viewer-$latest_bv.jar --output $HOME/Bytecode-Viewer.jar
-mv Bytecode-Viewer.jar $HOME/tools/mobile/Bytecode-Viewer.jar
 # scrcpy #
-sudo apt install scrcpy -y
+sudo apt install scrcpy apksigner apktool -y
+
+# Pidcat & make it executable
+sudo wget -O /usr/local/bin/pidcat https://raw.githubusercontent.com/JakeWharton/pidcat/master/pidcat.py && \
+	sudo chmod +x /usr/local/bin/pidcat
 
 ###################################
 ############## Utils ##############
